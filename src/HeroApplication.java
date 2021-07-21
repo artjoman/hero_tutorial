@@ -88,5 +88,13 @@ public class HeroApplication {
         double averageDailySalary = Math.round( (heroSalary / 30 * 100)  ) / 100;
         System.out.println(" Hero average daily salary is " + averageDailySalary + " euro");
 
+
+
+        // BUSINESS REQUIREMENTS FOR LESSON #12
+        // 1. I would like to see a MENU to select different parts of superhero information card
+        // 2. A list of superheroes
+        // 3. Add new superhero
+        // 4. show specific superhero information
+        // 5. Delete the superhero from the list
     }
 }
