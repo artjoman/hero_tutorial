@@ -42,6 +42,38 @@ public class HeroApplication {
     public static void main(String[] args) {
 
 
+        Hero hero1 = new Hero("Artjoms","Petrovs","AliExpressman", 1234567, HeroType.Hero,35);
+        Hero hero2 = new Hero("Artjoms","Petrovs","Ironman", 987654321, HeroType.Hero,35);
+
+        Hero hero3 = new Hero();
+        hero3.setName("Artjoms");
+        hero3.setSurname("petrovs");
+        hero3.setDeedTime(1);
+        hero3.setNickname("Dr Evil");
+        hero3.setHeroType(HeroType.Villain);
+
+        Hero[] metropole = new Hero[3];
+        metropole[0] = hero1;
+        metropole[1] = hero2;
+        metropole[2] = hero3;
+
+
+        // District usage sample
+        District district1 = new District();
+        district1.addNewHero(hero1);
+
+        System.out.println(district1.toString());
+        int counter = 0;
+        for ( Hero hero: metropole ) {
+            if ( hero.calculatedLevel() == 1) {
+                counter++;
+            }
+        }
+
+        System.out.println("There are " + counter + " LVL1 heroes");
+
+
+
         // VARIABLES
         String[] heroList = {"AliExpressMan", "DogoMom", "Oh Lora", "Garbage man", "ProblemSolver", "Blossom", "Bubble", "FlowerGirl", "SuperSnowflake", "MuffinGirl", "STAR"};
         double[] heroSalaries = { 1000.00d,  1111d};
@@ -57,6 +89,7 @@ public class HeroApplication {
         // 3. Add new superhero
         // 4. show specific superhero information
         // 5. Delete the superhero from the list
+        // 6. Print info about heroes
         // 0. Exit
         do {
             // EXIT == 0
