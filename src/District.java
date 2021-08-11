@@ -21,10 +21,9 @@ public class District {
         return heroesInTheDistrict.add(hero);
     }
 
-    public Hero removeHero( int index) {
-       return heroesInTheDistrict.remove(index);
+    public Hero removeHero(int index) {
+        return heroesInTheDistrict.remove(index);
     }
-
 
 
     @Override

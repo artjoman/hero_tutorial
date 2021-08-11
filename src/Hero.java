@@ -1,4 +1,4 @@
-public class Hero {
+public class Hero extends Person {
 
 //    Attributes
 //
@@ -25,8 +25,7 @@ public class Hero {
     }
 
     public Hero(String name, String surname, String nickname, int heroID, HeroType heroType, int deedTime) {
-        this.name = name;
-        this.surname = surname;
+        super(name, surname);
         this.nickname = nickname;
         this.heroID = heroID;
         this.heroType = heroType;
@@ -58,21 +57,6 @@ public class Hero {
                 '}';
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
 
     public String getNickname() {
         return nickname;
@@ -104,6 +88,24 @@ public class Hero {
 
     public void setDeedTime(int deedTime) {
         this.deedTime = deedTime;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 }
 
