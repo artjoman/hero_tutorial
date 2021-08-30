@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class HeroApplication {
 
+    private static DBConnection heroesDb;
+
     // Function to add x in arr
     public static String[] addX(String heroArray[], String newHeroName) {
         // create a new ArrayList
@@ -41,39 +43,40 @@ public class HeroApplication {
 
     public static void main(String[] args) {
 
+        heroesDb = new DBConnection();
 
-        Hero hero1 = new Hero("Artjoms","Petrovs","AliExpressman", 1234567, HeroType.Hero,35);
-        Hero hero2 = new Hero("Artjoms","Petrovs","Ironman", 987654321, HeroType.Hero,35);
-
-        Hero hero3 = new Hero();
-        hero3.setName("Artjoms");
-//        hero3.setSurname("petrovs");
-        hero3.setDeedTime(1);
-        hero3.setNickname("Dr Evil");
-        hero3.setHeroType(HeroType.Villain);
-
-        Hero[] metropole = new Hero[3];
-        metropole[0] = hero1;
-        metropole[1] = hero2;
-        metropole[2] = hero3;
-
-
-        // District usage sample
-        District district1 = new District();
-        district1.addNewHero(hero1);
-
-        System.out.println(district1.toString());
-        int counter = 0;
-        for ( Hero hero: metropole ) {
-            if ( hero.calculatedLevel() == 1) {
-                counter++;
-            }
-        }
-
-        System.out.println("There are " + counter + " LVL1 heroes");
-
-
-
+//        Hero hero1 = new Hero("Artjoms","Petrovs","AliExpressman", 1234567, HeroType.Hero,35);
+//        Hero hero2 = new Hero("Artjoms","Petrovs","Ironman", 987654321, HeroType.Hero,35);
+//
+//        Hero hero3 = new Hero();
+//        hero3.setName("Artjoms");
+////        hero3.setSurname("petrovs");
+//        hero3.setDeedTime(1);
+//        hero3.setNickname("Dr Evil");
+//        hero3.setHeroType(HeroType.Villain);
+//
+//        Hero[] metropole = new Hero[3];
+//        metropole[0] = hero1;
+//        metropole[1] = hero2;
+//        metropole[2] = hero3;
+//
+//
+//        // District usage sample
+//        District district1 = new District();
+//        district1.addNewHero(hero1);
+//
+//        System.out.println(district1.toString());
+//        int counter = 0;
+//        for ( Hero hero: metropole ) {
+//            if ( hero.calculatedLevel() == 1) {
+//                counter++;
+//            }
+//        }
+//
+//        System.out.println("There are " + counter + " LVL1 heroes");
+//
+//
+//
         // VARIABLES
         String[] heroList = {"AliExpressMan", "DogoMom", "Oh Lora", "Garbage man", "ProblemSolver", "Blossom", "Bubble", "FlowerGirl", "SuperSnowflake", "MuffinGirl", "STAR"};
         double[] heroSalaries = { 1000.00d,  1111d};
@@ -96,9 +99,19 @@ public class HeroApplication {
     }
 
     private static void addNewHero(Scanner scanner, String[] heroList) {
+        Hero newHero = new Hero();
         System.out.println("Enter hero's name");
-        String newHeroName = scanner.next();
-        heroList = addX(heroList, newHeroName);
+        newHero.setName(scanner.next());
+        System.out.println("Enter hero's surname");
+        newHero.setSurname(scanner.next());
+        System.out.println("Enter hero's nickname");
+        newHero.setNickname(scanner.next());
+        System.out.println("Enter hero's hero type");
+        newHero.setHeroType(HeroType.valueOf(scanner.next()));
+        System.out.println("Enter hero's Deed time");
+        newHero.setDeedTime(scanner.nextInt());
+        // Add new hero to database
+        heroesDb.createHero(newHero);
     }
 
     private static void showSpecificHeroInformation(Scanner scanner, String[] heroList) {
@@ -228,9 +241,12 @@ public class HeroApplication {
 
             switch (menuEntry) {
                 case 1:
-                    showListOfHeroes(heroList);
+//                    showListOfHeroes(heroList);
+                    // retrieve from Database instead
+                    heroesDb.getHeroes();
                     break;
                 case 2:
+                    // Add new hero to database
                     addNewHero(scanner, heroList);
                     break;
                 case 3:
